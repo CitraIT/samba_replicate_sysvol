@@ -12,7 +12,7 @@ pdc_owner=$(echo $fsmo_line | python3 -c 'print(input().split(",")[-1].replace("
 domain_line=$(samba-tool domain info 127.0.0.1 2>/dev/null | grep -oE "Domain\s+: (.*)")
 domain=$(echo $domain_line | python3 -c 'import re; a=input(); print(re.search("Domain\s+: (.*)",a).group(1))')
 
-logger "Starting replicating sysvol from $pdf_owner to this samba server..."
+logger "Starting replicating sysvol from $pdc_owner to this samba server..."
 
 # push cwd to sysvol for this domain
 pushd /var/lib/samba/sysvol/$domain
